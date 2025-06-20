@@ -12,7 +12,7 @@ const FeaturesSection = () => {
         {/* Feture 1 */}
         <div className='flex flex-col items-center'>
           <div className='p-4 rounded-full mb-4'>
-            <HiShoppingBag className text-xl />
+            <HiShoppingBag className='text-xl' />
           </div>
           <h4 className='tracking-tighter mb-2'>FREE INTERNATIONAL SHIPPING</h4>
           <p className='text-gray-600 text-sm tracking-tighter'>On all orders over $100.00</p>
@@ -20,7 +20,7 @@ const FeaturesSection = () => {
         {/* Feture 2 */}
         <div className='flex flex-col items-center'>
           <div className='p-4 rounded-full mb-4'>
-            <HiArrowPathRoundedSquare className text-xl />
+            <HiArrowPathRoundedSquare className='text-xl' />
           </div>
           <h4 className='tracking-tighter mb-2'>45 DAYS RETURN</h4>
           <p className='text-gray-600 text-sm tracking-tighter'> Money back guarantee</p>
@@ -28,7 +28,7 @@ const FeaturesSection = () => {
         {/* Feture 3 */}
         <div className='flex flex-col items-center'>
           <div className='p-4 rounded-full mb-4'>
-            <HiOutlineCreditCard className text-xl />
+            <HiOutlineCreditCard className='text-xl' />
           </div>
           <h4 className='tracking-tighter mb-2'>SECURE CHECKOUT</h4>
           <p className='text-gray-600 text-sm tracking-tighter'>100% secured checkout process</p>
