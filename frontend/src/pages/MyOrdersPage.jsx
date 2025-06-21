@@ -1,50 +1,24 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { fetchUserOrders } from '../redux/slices/orderSlice';
 
 const MyordersPage = () => {
-
-  const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { orders, loading, error } = useSelector((state) => state.orders);
 
   useEffect(() => {
-    // Simulate fetching orders
-    setTimeout(() => {
-      const mockOrders = [
-        {
-          _id: "12345",
-          createdAt: new Date(),
-          shippingAddress: { city: "New York", country: "USA" },
-          orderItems: [
-            {
-              name: "Product 1",
-              image: "https://picsum.photos/500/500?random=1",
-            },
-          ],
-          totalPrice: 100,
-          isPaid: true,
-        },
-        {
-          _id: "34567",
-          createdAt: new Date(),
-          shippingAddress: { city: "Los Angeles", country: "USA" },
-          orderItems: [
-            {
-              name: "Product 2",
-              image: "https://picsum.photos/500/500?random=2",
-            },
-          ],
-          totalPrice: 150,
-          isPaid: false,
-        },
-      ];
-      setOrders(mockOrders);
-    }, 1000);
-  }, []);
+    dispatch(fetchUserOrders());
+  }, [dispatch]);
+
 
   const handleRowClick = (orderId) => {
-    navigate(`/order/${orderId}`)
+    navigate(`/order/${orderId}`);
 
   };
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error:{error}</p>
 
   return (
     <div className='max-w-7xl mx-auto p-4 sm:p-6'>
@@ -79,8 +53,10 @@ const MyordersPage = () => {
                     #{order._id}
                   </td>
                   <td className='py-2 px-2 sm:py-4 sm:px-4'>
+
                     {new Date(order.createdAt).toLocaleDateString()}{" "}
                     {new Date(order.createdAt).toLocaleTimeString()}
+
                   </td>
                   <td className='py-2 px-2 sm:py-4 sm:px-4'>
                     {order.shippingAddress ? `${order.shippingAddress.city},${order.shippingAddress.country}` : "N?A"}
