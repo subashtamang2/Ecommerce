@@ -50,15 +50,16 @@ const App = () => {
           </Route>
 
           {/* Admin layout with nested routes */}
-          <Route
-            path='/admin'
-            element={
-              <ProtectedRoute role="admin">
-                <AdminLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<AdminHomePage />} />
+          <Route path='/admin' element={<AdminLayout />}>
+            <Route
+              index
+              element={
+                <ProtectedRoute role="admin">
+                  <AdminHomePage />
+                </ProtectedRoute>
+              }
+            />
+
             <Route path='users' element={<UserManagement />} />
             <Route path='products' element={<ProductManagement />} />
             <Route path='products/:id/edit' element={<EditProduct />} />

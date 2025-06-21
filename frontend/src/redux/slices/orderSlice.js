@@ -1,42 +1,36 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// async thunk to fetch user orders
+// Async thunk to fetch all user orders
 export const fetchUserOrders = createAsyncThunk(
-  "orders/fetchUserOrders",
+  'orders/fetchUserOrders',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/orders/my-orders`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-          },
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/orders/my-orders`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("userToken")}`
         }
-      );
+      });
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data || { message: "Failed to fetch orders" });
+      return rejectWithValue(error.response.data);
     }
   }
 );
 
-// async thunk to fetch order details by id
+// Async thunk to fetch order details by ID
 export const fetchOrderDetails = createAsyncThunk(
-  "orders/fetchOrderDetails",
+  'orders/fetchOrderDetails',
   async (orderId, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/orders/${orderId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-          },
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/orders/${orderId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("userToken")}`
         }
-      );
+      });
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data || { message: "Failed to fetch order details" });
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -48,12 +42,12 @@ const orderSlice = createSlice({
     totalOrders: 0,
     orderDetails: null,
     loading: false,
-    error: null,
+    error: null
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // fetch user orders
+      // Fetch user orders
       .addCase(fetchUserOrders.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -61,14 +55,13 @@ const orderSlice = createSlice({
       .addCase(fetchUserOrders.fulfilled, (state, action) => {
         state.loading = false;
         state.orders = action.payload;
-        state.totalOrders = action.payload.length; // optional
       })
       .addCase(fetchUserOrders.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload?.message || "Failed to fetch orders";
+        state.error = action.payload?.message || action.error.message;
       })
 
-      // fetch order details
+      // Fetch order details
       .addCase(fetchOrderDetails.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -79,9 +72,9 @@ const orderSlice = createSlice({
       })
       .addCase(fetchOrderDetails.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload?.message || "Failed to fetch order details";
+        state.error = action.payload?.message || action.error.message;
       });
-  },
+  }
 });
 
 export default orderSlice.reducer;
