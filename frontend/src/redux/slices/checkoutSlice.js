@@ -6,6 +6,8 @@ export const createCheckout = createAsyncThunk(
   "checkout/createCheckout",
   async (checkoutData, { rejectWithValue }) => {
     try {
+      const token = localStorage.getItem("userToken");
+      console.log("Using token:", token);
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/checkout`,
         checkoutData,
