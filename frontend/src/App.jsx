@@ -16,7 +16,7 @@ import ProductDetails from './components/Products/ProductDetails';
 import Checkout from './components/Cart/Checkout';
 import OrderConfirmationPage from './pages/OrderConfirmationPage';
 import OrderDetailsPage from './pages/OrderDetailsPage';
-import MyordersPage from './pages/MyordersPage';
+
 
 // Admin Pages
 import AdminHomePage from './pages/AdminHomePage';
@@ -27,6 +27,7 @@ import OrderManagement from './components/Admin/Ordermanagement';
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import ProtectedRoute from './components/Common/ProtectedRoute';
+import MyOrdersPage from './pages/MyOrdersPage';
 
 const App = () => {
   return (
@@ -46,7 +47,7 @@ const App = () => {
             <Route path='checkout' element={<Checkout />} />
             <Route path='order-confirmation' element={<OrderConfirmationPage />} />
             <Route path='order/:id' element={<OrderDetailsPage />} />
-            <Route path='my-orders' element={<MyordersPage />} />
+            <Route path='my-orders' element={<MyOrdersPage />} />
           </Route>
 
           {/* Admin layout with nested routes */}
