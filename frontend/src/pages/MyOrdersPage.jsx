@@ -152,7 +152,7 @@ const MyOrdersPage = () => {
                       <td className="py-2 px-2 sm:py-4 sm:px-4">
                         <img
                           className="w-10 h-10 sm:w-12 sm:h-12 object-cover  rounded-lg "
-                          src={order.orderItems?.[0]?.images}
+                          src={order.orderItems?.[0]?.image}
                           alt={order.orderItems?.[0]?.name}
                         />
                       </td>
@@ -177,8 +177,8 @@ const MyOrdersPage = () => {
                       <td className="py-2 px-2 sm:py-4 sm:px-4 ">
                         <span
                           className={`${order.isPaid
-                              ? "bg-green-100 to-green-700"
-                              : "bg-red-200 text-red-700"
+                            ? "bg-green-100 to-green-700"
+                            : "bg-red-200 text-red-700"
                             } px-2 py-1 rounded-full text-xs sm:text-sm font-medium `}
                         >
                           {order.isPaid ? "Paid" : "Pending"}
