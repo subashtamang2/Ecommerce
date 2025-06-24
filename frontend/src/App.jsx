@@ -23,11 +23,14 @@ import AdminHomePage from './pages/AdminHomePage';
 import UserManagement from './components/Admin/UserManagement';
 import ProductManagement from './components/Admin/ProductManagement';
 import EditProduct from './components/Admin/EditProduct';
-import OrderManagement from './components/Admin/Ordermanagement';
+import OrderManagement from './components/Admin/OrderManagement';
+// import OrderManagement from './components/Admin/Ordermanagement';
+
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import ProtectedRoute from './components/Common/ProtectedRoute';
 import MyOrdersPage from './pages/MyOrdersPage';
+
 
 const App = () => {
   return (
