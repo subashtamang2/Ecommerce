@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import MyordersPage from './MyordersPage'
+import MyOrdersPage from './MyOrdersPage'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../redux/slices/authSlice';
@@ -37,7 +37,7 @@ const Profile = () => {
         </div>
         {/* Right section:Orders table */}
         <div className='w-full md:w-2/3 lg:w-3/4'>
-          <MyordersPage /></div>
+          <MyOrdersPage /></div>
       </div>
 
     </div>
