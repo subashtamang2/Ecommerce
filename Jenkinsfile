@@ -8,25 +8,25 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git "${GIT_REPO}"
+                git branch: 'main', url: "${GIT_REPO}"
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                bat 'npm install'
+                sh 'npm install'
             }
         }
 
         stage('Build App') {
             steps {
-                bat 'npm run build'
+                sh 'npm run build'
             }
         }
 
         stage('Serve App') {
             steps {
-                bat 'nohup npx serve -s build -l 8000 > app.log 2>&1 &'
+                sh 'nohup npx serve -s build -l 8000 > app.log 2>&1 &'
             }
         }
     }
